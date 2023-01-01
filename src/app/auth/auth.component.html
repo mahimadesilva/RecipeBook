@@ -1,0 +1,50 @@
+<ng-template [appPlaceHolder]></ng-template>
+<div class="row">
+  <!-- <div *ngIf="error" class="col-12 col-lg-6 offset-lg-3">
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+  </div> -->
+  <!-- <app-alert *ngIf="error" [message]="error" (close)="onAlert()"></app-alert> -->
+  
+  <div *ngIf="!isFethching" class="col-12 col-lg-6 offset-lg-3">
+    <form  (ngSubmit)="onSubmit(authForm)" #authForm="ngForm">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="email" 
+          name="email"
+          ngModel
+          required
+          email>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input 
+          type="password" 
+          class="form-control" 
+          id="password" 
+          name="password"
+          ngModel
+          required
+          minlength="6">
+      </div>
+      <div class="mb-3">
+        <button 
+          class="btn btn-primary" 
+          type="submit"
+          [disabled]="authForm.invalid">{{ isLoginMode? 'Login' : 'Sign Up'}}</button>
+        |
+        <button 
+          class="btn btn-primary" 
+          type="button" 
+          (click)="onSwitchMode()">Switch to {{ isLoginMode? 'Sign Up' :'Login'}}</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="isFethching" class="col-12 col-lg-6 offset-lg-3" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</div>
